@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="edit-menu-container">
+    <header>
+        <h1>EDIT MENU</h1>
+        <form action="{{  url_for('menu.cancel_edit')}}">
+            <button class="button yellow" type="submit">Done</button>
+        </form>
+    </header>
+    <div>
+        <section>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="red">{{  message  }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </section>
+        <section>
+            <h2>Add Item</h2>
+            <table>
+                <th>Item Name</th>
+                <th>Item Price</th>
+                <th>Item Type</th>
+                <tr>
+                    <td>
+                        <input type="text" name="new_name" id="new_name" form="add_item" placeholder="Item Name">
+                    </td>
+                    <td>
+                        <input type="text" name="new_price" id="new_price" type="number" inputmode="numeric" form="add_item" placeholder="Item Price">
+                    </td>
+                    <td>
+                        <select class="item-type-select" name="new_type" id="new_type" form="add_item">
+                            <option value="0" disabled selected>Item Types</option>
+                            {% for type in menu_item_types %}
+                                <option value="{{  type.id  }}">{{  type.name  }}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                    <td>
+                        <form id="add_item" action="{{  url_for('menu.add_item')  }}" method="POST">
+                            <button class="button" type="submit">Add to Menu</button>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        </section>
+        <section>
+            {% for type in menu %}
+                <div>
+                    <h2>{{  type  }}</h2>
+                    <table>
+                        <th>Item Name</th>
+                        <th>Item Price</th>
+                        <th>Item Type</th>
+                        {% for item in menu[type] %}
+                            <tr>
+                                <td>
+                                    <input type="text" name="edit_name_{{  item.id  }}" id="edit_name_{{  item.id  }}" form="edit_item_{{  item.id  }}" value="{{  item.name  }}" placeholder="item Name">
+                                </td>
+                                <td>
+                                    <input type="text" name="edit_price_{{  item.id  }}" id="edit_price_{{  item.id  }}" form="edit_item_{{  item.id  }}" value="{{  item.price  }}" placeholder="Item Price">
+                                </td>
+                                <td>
+                                    <select class="item-type-select" name="edit_type_{{  item.id  }}" id="edit_type_{{  item.id  }}" form="edit_item_{{  item.id  }}" form="edit_item">
+                                        <option value="0" disabled selected>Item Types</option>
+                                        {% for type in menu_item_types %}
+                                            <option value="{{  type.id  }}">{{  type.name  }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </td>
+                                <td>
+                                    <form class="remove" action="{{  url_for('menu.delete_item', item_id=item.id)  }}" method="POST">
+                                        <button class="button yellow" type="submit">Remove</button>
+                                    </form>
+                                </td>
+                                <td>
+                                    <form class="save" id="edit_item_{{  item.id  }}" action="{{  url_for('menu.edit_item', item_id=item.id)  }}" method="POST">
+                                        <button class="button" type="submit">Save</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            {% endfor %}
+        </section>
+    </div>
+</div>
+
+{% endblock %}

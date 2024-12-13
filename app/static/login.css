@@ -1,0 +1,61 @@
+/* Color Properties - Inherited from base.css > :root
+    --gunmetal: #31393cff;
+    --blue-crayola: #2176ffff;
+    --celestial-blue: #33a1fdff;
+    --sunglow: #fdca40ff;
+    --carrot-orange: #f79824ff;
+*/
+
+.logout-form {
+    display: flex;
+    align-items: center;
+    margin: 0 1.3em;
+}
+
+.login-form-container {
+    background-color: rgb(245, 245, 245);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 6em;
+    height: 100vh;
+    width: 100vw;
+}
+
+.login-form-container h2 {
+    color: var(--blue-crayola)
+}
+
+.login-icon {
+    fill: var(--carrot-orange);
+    width: 5em;
+}
+
+.login-form {
+    background-color: white;
+    border: 2px solid lightgray;
+    border-radius: 10px;
+    padding: 1.5em 2em;
+}
+
+.login-field {
+    margin: .7em 0;
+}
+
+.login-element {
+    display: block;
+    margin: .2em 0;
+}
+
+.login-submit {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.4em;
+}
+
+.red {
+    color: rgb(187, 0, 0);
+    font-size: .8em;
+    margin: 0;
+    padding: 0;
+}

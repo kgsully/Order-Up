@@ -1,0 +1,64 @@
+:root {
+    /* Color Palette Definitions */
+    --gunmetal: #31393cff;
+    --blue-crayola: #2176ffff;
+    --celestial-blue: #33a1fdff;
+    --sunglow: #fdca40ff;
+    --carrot-orange: #f79824ff;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: white;
+    color: var(--gunmetal);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin: 0;
+}
+
+.button {
+    background-color: var(--celestial-blue);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 1em;
+    padding: .4em 3em;
+    text-transform: uppercase;
+}
+
+.yellow {
+    background-color: var(--carrot-orange)
+}
+
+.header-main {
+    background-color: var(--gunmetal);
+    color: var(--celestial-blue);
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+    padding: .3em 0;
+    width: 100vw;;
+
+}
+
+.header-main h1 {
+    display: inline-block;
+    margin: 0 .4em;
+    padding: 0;
+}
+
+.header-main-logo {
+    display: flex;
+    justify-content: center;
+    margin: 0 .8em;
+}
+
+.header-main svg {
+    fill: var(--carrot-orange);
+    width: 2em;
+}

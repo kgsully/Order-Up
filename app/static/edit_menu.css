@@ -1,0 +1,45 @@
+/* Color Properties - Inherited from base.css > :root
+    --gunmetal: #31393cff;
+    --blue-crayola: #2176ffff;
+    --celestial-blue: #33a1fdff;
+    --sunglow: #fdca40ff;
+    --carrot-orange: #f79824ff;
+*/
+.edit-menu-container {
+    width: 80%;
+}
+
+.edit-menu-container table {
+    width: 70%;
+}
+
+.edit-menu-container header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.edit-menu-container h2 {
+    border-bottom: 2px solid lightgray;
+    padding-bottom: .5em;
+    margin-bottom: .5em;
+}
+
+.edit-menu-container td {
+    text-align: center;
+}
+
+.item-type-select {
+    border-radius: 5px;
+    height: 2.3em;
+    width: 15em;
+    margin: 0 .2em;
+}
+
+.remove {
+    margin: 0 .5em;
+}
+
+.save {
+    margin: 0 .5em;
+}

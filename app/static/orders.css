@@ -1,0 +1,130 @@
+/* Color Properties - Inherited from base.css > :root
+    --gunmetal: #31393cff;
+    --blue-crayola: #2176ffff;
+    --celestial-blue: #33a1fdff;
+    --sunglow: #fdca40ff;
+    --carrot-orange: #f79824ff;
+*/
+
+.orders-container {
+    width: 95%;
+}
+
+.orders-container-header {
+    display: flex;
+    align-items: center;
+}
+
+.orders-container-header h1 {
+    margin-right: 1em;
+}
+
+.assign-select {
+    border-radius: 5px;
+    height: 2.3em;
+    width: 15em;
+    margin: 0 .2em;
+}
+
+.assign-select:has(>option[value="0"]:checked) {
+    background-color: rgb(240, 240, 240);
+}
+
+.orders-section-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.open-orders {
+    width: 90%
+}
+
+.open-orders-container {
+    margin-top: 1em;
+}
+
+.table-total {
+    display: flex;
+    font-size: 1.5em;
+}
+
+.table {
+    font-weight: bold;
+    color: var(--blue-crayola)
+}
+
+.orders-header {
+    border-bottom: 2px solid lightgray;
+}
+
+.open-order-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.order-options {
+    display: flex;
+}
+
+.order-options button {
+    background-color: white;
+    border: 1px solid darkgray;
+    border-radius: 5px;
+    color: var(--gunmetal);
+    font-size: 1em;
+    padding: .2em 1.3em;
+    margin: 0 .3em;
+    text-transform: uppercase;
+}
+
+.total {
+    margin: 0 2em;
+}
+
+.menu {
+    width: 90%;
+}
+
+.open-order-details {
+    border-top: 1px solid darkgray;
+    padding: 1em 1.5em;
+    margin-top: .5em;
+}
+
+.open-order-details button {
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid darkgray;
+    color: darkgray;
+    margin: 0 1em;
+}
+
+.order-details-table td:nth-child(1) {
+    width: 10%;
+}
+
+.order-details-table td:nth-child(2) {
+    width: 40%;
+}
+
+.menu h3 {
+    text-decoration: underline;
+}
+
+.menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid lightgray;
+}
+
+.menu-header form {
+    margin: 0;
+    padding: 0;
+}
+
+.item-type-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}

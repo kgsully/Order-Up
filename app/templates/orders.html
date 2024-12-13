@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="orders-container">
+    <header class="orders-container-header">
+        <h1>ASSIGN TABLE</h1>
+        <form action="{{ url_for('orders.assign_table')}}" id="table-assign-form" method="POST">
+            {{  table_assign_form.csrf_token  }}
+            <select class="assign-select" id="tables" name="tables">
+                <option  value="0" disabled selected>Open Tables</option>
+                {% for id, name in table_assign_form.tables.choices %}
+                    <option value="{{  id  }}">{{  name  }}</option>
+                {% endfor %}
+            </select>
+            <select class="assign-select" id="servers" name="servers">
+                <option value="0" disabled selected>Servers</option>
+                {% for id, name in table_assign_form.servers.choices %}
+                    <option value="{{  id  }}">{{  name  }}</option>
+                {% endfor %}
+            </select>
+
+            {{  table_assign_form.assign(class_="button")  }}
+        </form>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <span>Please select a table and server</span>
+            {% endif %}
+        {% endwith %}
+    </header>
+    <div class="orders-section-container">
+        <section class="open-orders">
+            <div class="orders-header">
+                {% if current_user.admin %}
+                    <h2>ALL OPEN ORDERS</h2>
+                {% else %}
+                    <h2>YOUR OPEN ORDERS</h2>
+                {% endif %}
+            </div>
+            <div class="open-orders-container">
+                {% for o_id in open_orders %}
+                <div class="open-order-header">
+                    <div class="table-total">
+                        <span class="table">Table {{  open_orders[o_id].order.table_id }}</span>
+                        <span class="total">${{  open_orders[o_id].total  }}</span>
+                    </div>
+                    <div class="order-options">
+                        <form action="{{  url_for('orders.close_table', order_id=open_orders[o_id].order.id)  }}" method="POST">
+                            <button type="submit">CLOSE TABLE</button>
+                        </form>
+                        <button form="food-list" formaction="{{  url_for('orders.add_to_order', order_id=open_orders[o_id].order.id, items=0)  }}" method="POST">
+                            ADD TO ORDER
+                        </button>
+                    </div>
+                </div>
+                <div class="open-order-details">
+                    <table class="order-details-table">
+                        {% for detail in open_orders[o_id].order.order_details %}
+                            <tr>
+                                <td>
+                                    <form action="{{  url_for('orders.remove_from_order', order_detail_id=detail.id)}}" method="POST">
+                                        <button type="submit">X</button>
+                                    </form>
+                                </td>
+                                <td>
+                                    {{  detail.menu_item.name  }}
+                                </td>
+                                <td>
+                                    ${{  '%0.2f' % detail.menu_item.price|float  }}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+        <section class="menu">
+            <div class="menu-header">
+                <h2>MENU</h2>
+                {% if current_user.admin %}
+                    <form action="{{ url_for('orders.edit_menu')}}">
+                        <button class="button" type="submit">Edit Menu</button>
+                    </form>
+                {% endif %}
+            </div>
+            <form id="food-list" method="POST">
+                {% for type in menu %}
+                    <div>
+                        <h3>{{  type  }}</h3>
+                        <div class="item-type-container">
+                            {% for item in menu[type] %}
+                                <div>
+                                    <input type="checkbox" id="{{  item.id  }}" name="menu_items" value="{{  item.id  }}">
+                                    <label for="{{  item.id  }}">{{  item.name  }}</label>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </form>
+        </section>
+    </div>
+</div>
+
+{% endblock %}
